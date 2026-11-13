@@ -113,7 +113,19 @@ Evidencia:
 
 Acción: verificar configuración de firma y exportación en un entorno autorizado; no publicar secretos ni depender de una ruta local personal. Mantener endpoints configurables por entorno y documentar el procedimiento de despliegue.
 
-## 3. Riesgos y límites de esta auditoría
+## 3. Cambios aplicados en `develope1`
+
+Los siguientes cambios ya están guardados en la rama:
+
+1. **Áreas interactivas:** las nueve áreas de la escena (`casa_1` a `casa_6`, plaza, huerto y manantial) se alinearon con las coordenadas correspondientes de `main.gd`. Esto corrige las posiciones anteriores que quedaban fuera del mapa de 960×540.
+2. **Prueba de estructura:** se actualizó para comprobar `World/InteractiveLocations`, `HUDMain` y las rutas reales del HUD. También comprueba que cada área interactiva coincide con el catálogo de coordenadas.
+3. **Prueba del reloj:** se eliminó la llamada a `format_clock_text()` en el controlador principal, método que no existe. Ahora se comprueba el método real del HUD y la extracción de hora del ciclo día/noche.
+4. **Inspector de ubicación:** se agregó la normalización de ubicaciones `casa_<UUID>` del backend a `casa_<número>` usando el catálogo sincronizado de viviendas.
+5. **Datos no disponibles:** el HUD dejó de presentar una integridad estructural ficticia de 100 % y dejó de inventar pensamientos según la profesión. Ahora indica que esos datos no están disponibles cuando el backend no los entrega.
+
+**Estado de validación:** los cambios están confirmados mediante commits de GitHub, pero todavía requieren ejecución con Godot 4.3. No se afirma que las pruebas hayan pasado.
+
+## 4. Riesgos y límites de esta auditoría
 
 1. No se ejecutó el editor ni el motor Godot.
 2. No se ejecutó `test_client_sync.gd`.
@@ -125,7 +137,7 @@ Acción: verificar configuración de firma y exportación en un entorno autoriza
 
 Por tanto, los impactos descritos son conclusiones estáticas o riesgos probables, no resultados de pruebas de ejecución.
 
-## 4. Orden recomendado de trabajo
+## 5. Orden recomendado de trabajo
 
 | Orden | Trabajo | Criterio de salida |
 |---|---|---|
@@ -139,10 +151,10 @@ Por tanto, los impactos descritos son conclusiones estáticas o riesgos probable
 | 8 | Perfilar y optimizar | Objetivos de FPS/memoria medidos en dispositivos reales |
 | 9 | Exportar y validar Windows/Android | Builds reproducibles y pruebas funcionales documentadas |
 
-## 5. Regla de cambios
+## 6. Regla de cambios
 
 Los cambios se realizan exclusivamente en `develope1`. `main` se mantiene intacta durante el trabajo. Cada bloque debe tener commits pequeños, pruebas y una descripción de impacto. No se modificarán lógica social, decisiones de IA, persistencia ni contratos del backend sin una autorización específica adicional.
 
-## 6. Próximo paso técnico
+## 7. Próximo paso técnico
 
 Comenzar por H-01 y H-02: construir un mapa de coordenadas verificable a partir de las dimensiones reales de los recursos y corregir las pruebas para que validen la escena que realmente se exporta. Antes de una renovación artística masiva, generar una build de referencia y capturas diurna/nocturna en el entorno de ejecución real.
