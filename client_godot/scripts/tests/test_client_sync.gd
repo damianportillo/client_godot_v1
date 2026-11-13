@@ -204,7 +204,7 @@ func _test_house_location_contract() -> int:
 	var hud_script = load("res://scripts/gui/hud_main.gd").new()
 	hud_script.last_houses = houses_payload
 	var normalized_home: String = hud_script._resolve_inspector_location("casa_536f0c5d-15d6-4fbc-95ae-3ad1bbd31c17")
-	failures = _check(normalized_home == "casa_6", "HUD normaliza casa_<uuid> para el inspector.")
+	failures = _check(normalized_home == "casa_6", "HUD normaliza casa_<uuid> para el inspector.", failures)
 	hud_script.free()
 
 	# `current_location` del backend es "casa_<uuid>"; debe resolver a la casa lógica.
