@@ -40,7 +40,7 @@ script = ExtResource("6_terrain")
 [node name="InteractiveLocations" type="Node2D" parent="World"]
 
 [node name="casa_1" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(940, 670)
+position = Vector2(140, 140)
 collision_layer = 8
 collision_mask = 0
 
@@ -48,7 +48,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="casa_2" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(940, 910)
+position = Vector2(140, 380)
 collision_layer = 8
 collision_mask = 0
 
@@ -56,7 +56,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="casa_3" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1580, 930)
+position = Vector2(780, 400)
 collision_layer = 8
 collision_mask = 0
 
@@ -64,7 +64,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="casa_4" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1140, 630)
+position = Vector2(340, 100)
 collision_layer = 8
 collision_mask = 0
 
@@ -72,7 +72,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="casa_5" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1580, 670)
+position = Vector2(780, 140)
 collision_layer = 8
 collision_mask = 0
 
@@ -80,7 +80,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="casa_6" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1420, 630)
+position = Vector2(620, 100)
 collision_layer = 8
 collision_mask = 0
 
@@ -88,7 +88,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="plaza" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1280, 800)
+position = Vector2(480, 270)
 collision_layer = 8
 collision_mask = 0
 
@@ -96,7 +96,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_plaza")
 
 [node name="huerto" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1000, 730)
+position = Vector2(200, 200)
 collision_layer = 8
 collision_mask = 0
 
@@ -104,7 +104,7 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_house")
 
 [node name="manantial" type="Area2D" parent="World/InteractiveLocations"]
-position = Vector2(1220, 770)
+position = Vector2(420, 240)
 collision_layer = 8
 collision_mask = 0
 
