@@ -161,32 +161,26 @@ func _populate_character_modal(c: Dictionary) -> void:
 			items.append("%s: %s" % [String(k).capitalize(), str(inv[k])])
 		char_inv.text = "🎒 Inventario: " + ", ".join(items)
 
-	# Pensamiento o razón reciente
-	var default_thoughts = {
-		"Proveedor de alimentos": "Cuidando los cultivos del huerto para que nunca falte comida en la mesa vecinal.",
-		"Proveedor de agua": "Supervisando el flujo de agua cristalina del manantial y los niveles de los bidones.",
-		"Médico": "Organizando el dispensario y comprobando las reservas de medicina para la comunidad.",
-		"Constructor": "Inspeccionando vigas y techos para asegurar la durabilidad de las 6 viviendas.",
-		"Policía": "Patrullando la plaza y calles para garantizar la tranquilidad y el respeto mutuo.",
-		"Político": "Revisando las ordenanzas comunales y preparando la próxima asamblea de vecinos."
-	}
-	var thought: String = default_thoughts.get(prof, "Conviviendo en paz en el vecindario de Neighborhood AI.")
-	char_thought.text = "🧠 Pensamiento: '%s'" % thought
+	# Mostrar únicamente contenido respaldado por el payload del servidor.
+	var thought: String = String(c.get("thought", c.get("current_thought", c.get("last_reasoning", ""))))
+	if thought.is_empty():
+		thought = "No disponible en los datos sincronizados."
+	char_thought.text = "🧠 Pensamiento: %s" % thought
 
 
 func open_location_inspector(loc_key: String, loc_name: String, resident_info: String, storage_info: String) -> void:
 	close_all_modals()
 	loc_title.text = loc_name
 	loc_resident.text = "👤 Residentes: " + resident_info
-	loc_integrity.text = "🏗️ Integridad Estructural: 100.0% (Excelente)"
+	loc_integrity.text = "🏗️ Integridad estructural: no disponible"
 	loc_storage.text = "📦 Recursos disponibles: " + storage_info
 
-	# Calcular quiénes están presentes en este momento
+	# Normalizar casa_<UUID> del backend a casa_<número> para el inspector.
 	var present: Array = []
-	for c in last_characters:
-		var cloc = String(c.get("current_location", ""))
-		if cloc == loc_key or (loc_key.begins_with("casa_") and cloc == loc_key):
-			present.append(String(c.get("name", "")))
+	for character in last_characters:
+		var raw_location: String = String(character.get("current_location", ""))
+		if _resolve_inspector_location(raw_location) == loc_key:
+			present.append(String(character.get("name", "")))
 
 	if present.is_empty():
 		loc_present.text = "📍 Presentes ahora: Ningún habitante en este instante"
@@ -195,6 +189,21 @@ func open_location_inspector(loc_key: String, loc_name: String, resident_info: S
 
 	loc_modal.visible = true
 	modal_visibility_changed.emit(true)
+
+
+func _resolve_inspector_location(raw_location: String) -> String:
+	if not raw_location.begins_with("casa_"):
+		return raw_location
+
+	var house_id: String = raw_location.substr("casa_".length())
+	for house in last_houses:
+		if not (house is Dictionary):
+			continue
+		if String(house.get("id", "")) == house_id:
+			var house_number: int = int(house.get("house_number", 0))
+			if house_number > 0:
+				return "casa_%d" % house_number
+	return raw_location
 
 
 func _on_btn_metrics_pressed() -> void:
