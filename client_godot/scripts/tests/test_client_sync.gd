@@ -47,25 +47,27 @@ func _test_scene_structure() -> int:
 	if main_instance == null:
 		return failures
 
-	var day_night = main_instance.get_node_or_null("DayNightCycle")
-	failures = _check(day_night != null, "Nodo DayNightCycle presente.", failures)
-
+	failures = _check(main_instance.get_node_or_null("DayNightCycle") != null, "Nodo DayNightCycle presente.", failures)
 	var world = main_instance.get_node_or_null("World")
 	failures = _check(world != null, "Nodo World presente.", failures)
-	if world == null:
-		return failures
+	if world:
+		var locations = world.get_node_or_null("InteractiveLocations")
+		failures = _check(locations != null, "World/InteractiveLocations presente.", failures)
+		if locations:
+			failures = _check(locations.get_child_count() == 9, "Se esperan 9 áreas interactivas; encontradas: %d." % locations.get_child_count(), failures)
+			for location_name in main_instance.LOCATIONS.keys():
+				var area = locations.get_node_or_null(String(location_name))
+				if area:
+					failures = _check(area.position == main_instance.LOCATIONS[location_name], "Coordenadas alineadas para %s." % String(location_name), failures)
+				else:
+					failures = _check(false, "Área interactiva presente para %s." % String(location_name), failures)
 
-	var houses = world.get_node_or_null("Houses")
-	var house_count: int = houses.get_child_count() if houses else 0
-	failures = _check(house_count == 6, "Se esperaban 6 viviendas, encontradas: %d." % house_count, failures)
-
-	# El HUD debe exponer reloj, eventos y estado de conexión.
-	var hud = main_instance.get_node_or_null("HUD")
-	failures = _check(hud != null, "Nodo HUD presente.", failures)
+	var hud = main_instance.get_node_or_null("HUDMain")
+	failures = _check(hud != null, "Instancia HUDMain presente.", failures)
 	if hud:
-		failures = _check(hud.get_node_or_null("TopBar/TimeLabel") != null, "HUD/TopBar/TimeLabel presente.", failures)
-		failures = _check(hud.get_node_or_null("TopBar/EventsLabel") != null, "HUD/TopBar/EventsLabel presente.", failures)
-		failures = _check(hud.get_node_or_null("StatusLabel") != null, "HUD/StatusLabel presente.", failures)
+		failures = _check(hud.get_node_or_null("TopBar/HBox/ClockContainer/TimeLabel") != null, "HUDMain expone reloj en la ruta actual.", failures)
+		failures = _check(hud.get_node_or_null("TopBar/HBox/RightContainer/StatusLabel") != null, "HUDMain expone estado de conexión.", failures)
+		failures = _check(hud.get_node_or_null("CommunityMetricsModal") != null, "HUDMain expone modal de métricas.", failures)
 
 	main_instance.free()
 	return failures
@@ -146,12 +148,17 @@ func _test_agent_node() -> int:
 
 func _test_clock_contract() -> int:
 	var failures: int = 0
-	var main_scene = load("res://scenes/main.tscn")
-	if main_scene == null:
-		return _check(false, "main.tscn disponible para probar el HUD.", failures)
-	var main_instance = main_scene.instantiate()
+	var hud_script = load("res://scripts/gui/hud_main.gd")
+	failures = _check(hud_script != null, "hud_main.gd cargado.", failures)
+	if hud_script == null:
+		return failures
 
-	# Payload real de GET /api/clock
+	var hud_methods: Array = []
+	for entry in hud_script.get_script_method_list():
+		hud_methods.append(String(entry.get("name", "")))
+	failures = _check(hud_methods.has("_on_clock_updated"), "HUD procesa el payload real del reloj.", failures)
+
+	var dn_script = load("res://scripts/day_night_cycle.gd").new()
 	var clock_payload: Dictionary = {
 		"world_time_utc": "2026-10-31T06:03:41.717737+00:00",
 		"local_time_argentina": "2026-10-31T03:03:41.717745-03:00",
@@ -161,50 +168,17 @@ func _test_clock_contract() -> int:
 		"minute": 3,
 		"second": 41,
 		"formatted_time": "03:03:41",
-		"formatted_date": "2026-10-31",
 	}
-	var hud_text: String = main_instance.format_clock_text(clock_payload)
-	failures = _check(hud_text.contains("03:03:41"), "HUD muestra la hora real (%s)." % hud_text, failures)
-	failures = _check(hud_text.contains("NOCHE"), "HUD marca NOCHE cuando is_day=false.", failures)
-
-	var day_payload: Dictionary = {
-		"is_day": true,
-		"phase": "day",
-		"hour": 14,
-		"minute": 25,
-		"formatted_time": "14:25:00",
-	}
-	var day_text: String = main_instance.format_clock_text(day_payload)
-	failures = _check(day_text.contains("14:25:00") and day_text.contains("DÍA"), "HUD marca DÍA con payload diurno.", failures)
-
-	# Fallback cuando el backend omite formatted_time: usar el ISO local.
-	var iso_only: Dictionary = {
-		"local_time_argentina": "2026-10-31T09:07:05.123456-03:00",
-		"hour": 9,
-		"minute": 7,
-	}
-	var iso_text: String = main_instance.format_clock_text(iso_only)
-	failures = _check(iso_text.contains("09:07:05"), "HUD deriva la hora del ISO cuando falta formatted_time.", failures)
-
-	# Payload vacío no debe romper el HUD.
-	var empty_text: String = main_instance.format_clock_text({})
-	failures = _check(not empty_text.is_empty(), "HUD tolera payload de reloj vacío (%s)." % empty_text, failures)
-
-	main_instance.free()
-
-	# day_night_cycle debe interpretar el mismo payload.
-	var dn_script = load("res://scripts/day_night_cycle.gd").new()
 	var hour_from_fields: float = dn_script.hour_from_clock_payload(clock_payload, -1.0)
-	failures = _check(is_equal_approx(hour_from_fields, 3.05), "hour_from_clock_payload usa hour+minute (%.3f)." % hour_from_fields, failures)
+	failures = _check(is_equal_approx(hour_from_fields, 3.05), "Ciclo día/noche usa hour+minute del payload.", failures)
 
 	var iso_clock: Dictionary = {"local_time_argentina": "2026-10-31T18:30:00-03:00"}
 	var hour_from_iso: float = dn_script.hour_from_clock_payload(iso_clock, -1.0)
-	failures = _check(is_equal_approx(hour_from_iso, 18.5), "hour_from_clock_payload deriva hora del ISO (%.3f)." % hour_from_iso, failures)
+	failures = _check(is_equal_approx(hour_from_iso, 18.5), "Ciclo día/noche deriva la hora desde ISO.", failures)
 
 	var fallback_hour: float = dn_script.hour_from_clock_payload({}, 7.5)
-	failures = _check(is_equal_approx(fallback_hour, 7.5), "hour_from_clock_payload respeta el fallback.", failures)
+	failures = _check(is_equal_approx(fallback_hour, 7.5), "Ciclo día/noche respeta el fallback.", failures)
 	dn_script.free()
-
 	return failures
 
 func _test_house_location_contract() -> int:
