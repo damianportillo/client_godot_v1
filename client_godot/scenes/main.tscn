@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://mainsceneneighborhood01"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="2_daynight"]
+[ext_resource type="Texture2D" path="res://assets/maps/neighborhood_map_960.png" id="map_bg_tex"]
+[ext_resource type="Script" path="res://scripts/lighting_manager.gd" id="3_light"]
+[ext_resource type="Script" path="res://scripts/terrain_builder.gd" id="6_terrain"]
+[ext_resource type="PackedScene" path="res://scenes/effects/ambient_particles.tscn" id="4_particles"]
+[ext_resource type="PackedScene" path="res://scenes/gui/hud_main.tscn" id="5_hud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_house"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_plaza"]
+radius = 28.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="DayNightCycle" type="CanvasModulate" parent="."]
+color = Color(1, 1, 0.98, 1)
+script = ExtResource("2_daynight")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 270)
+zoom = Vector2(1.0, 1.0)
+position_smoothing_enabled = true
+
+[node name="MapBackground" type="TextureRect" parent="."]
+texture = ExtResource("map_bg_tex")
+size = Vector2(960, 540)
+position = Vector2(0, 0)
+stretch_mode = 3
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TerrainBuilder" type="Node2D" parent="World"]
+script = ExtResource("6_terrain")
+
+[node name="InteractiveLocations" type="Node2D" parent="World"]
+
+[node name="casa_1" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(940, 670)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_1"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="casa_2" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(940, 910)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_2"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="casa_3" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1580, 930)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_3"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="casa_4" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1140, 630)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_4"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="casa_5" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1580, 670)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_5"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="casa_6" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1420, 630)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/casa_6"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="plaza" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1280, 800)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/plaza"]
+shape = SubResource("CircleShape2D_plaza")
+
+[node name="huerto" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1000, 730)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/huerto"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="manantial" type="Area2D" parent="World/InteractiveLocations"]
+position = Vector2(1220, 770)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/InteractiveLocations/manantial"]
+shape = SubResource("CircleShape2D_house")
+
+[node name="Characters" type="Node2D" parent="World"]
+
+[node name="LightingManager" type="Node2D" parent="."]
+script = ExtResource("3_light")
+
+[node name="AmbientParticles" parent="." instance=ExtResource("4_particles")]
+
+[node name="HUDMain" parent="." instance=ExtResource("5_hud")]

@@ -1,0 +1,26 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+
+reimport: begin: (Re)Importing Assets steps: 30
+	reimport: step 0: Plaza Mayor_ Comunidad en Calma.png
+	reimport: step 11: 4.jpg
+	reimport: step 12: 3.jpg
+	reimport: step 13: 2.jpg
+	reimport: step 14: 1.jpg
+	reimport: step 15: terrain_main.png
+	reimport: step 16: props_main.png
+	reimport: step 17: fountain.png
+	reimport: step 18: house_6.png
+	reimport: step 20: house_4.png
+	reimport: step 21: house_3.png
+	reimport: step 22: house_2.png
+	reimport: step 23: house_1.png
+	reimport: step 25: char_policia.png
+	reimport: step 26: char_medico.png
+	reimport: step 27: char_constructor.png
+	reimport: step 28: char_alimentos.png
+	reimport: step 29: char_agua.png
+reimport: end
+export: begin: Exporting for Android steps: 105
+0 param: --xr_mode_regular
+1 param: --use_immersive
+export: end

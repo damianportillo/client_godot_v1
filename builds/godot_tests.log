@@ -1,0 +1,50 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+
+=== INICIANDO PRUEBAS DE INTEGRACIÓN DEL CLIENTE GODOT 4 ===
+✓ main.tscn cargada correctamente.
+✓ agent_node.tscn cargada correctamente.
+✓ main.tscn instanciada.
+✓ Nodo DayNightCycle presente.
+✓ Nodo World presente.
+✓ Se esperaban 6 viviendas, encontradas: 6.
+✓ Nodo HUD presente.
+✓ HUD/TopBar/TimeLabel presente.
+✓ HUD/TopBar/EventsLabel presente.
+✓ HUD/StatusLabel presente.
+✓ Iluminación de mediodía = color de día.
+✓ Iluminación de noche = color nocturno.
+✓ Nombre del agente inicializado.
+✓ Profesión del agente inicializada.
+✓ Posición objetivo del agente aplicada.
+✓ Color definido para la profesión 'Proveedor de agua'.
+✓ Color definido para la profesión 'Proveedor de alimentos'.
+✓ Color definido para la profesión 'Médico'.
+✓ Color definido para la profesión 'Constructor'.
+✓ Color definido para la profesión 'Policía'.
+✓ Color definido para la profesión 'Político'.
+✓ 'Médico' no cae en el color por defecto.
+✓ 'Policía' no cae en el color por defecto.
+✓ 'Político' no cae en el color por defecto.
+✓ HUD muestra la hora real (Buenos Aires: 03:03:41 (NOCHE)).
+✓ HUD marca NOCHE cuando is_day=false.
+✓ HUD marca DÍA con payload diurno.
+✓ HUD deriva la hora del ISO cuando falta formatted_time.
+✓ HUD tolera payload de reloj vacío (Buenos Aires: --:--:-- (DÍA)).
+✓ hour_from_clock_payload usa hour+minute (3.050).
+✓ hour_from_clock_payload deriva hora del ISO (18.500).
+✓ hour_from_clock_payload respeta el fallback.
+✓ casa_<uuid> de Camila resuelve a casa_6.
+✓ casa_<uuid> de Mateo resuelve a casa_1.
+✓ Locación 'plaza' resuelve correctamente.
+✓ UUID desconocido cae en plaza sin romper.
+✓ Locación vacía cae en plaza sin romper.
+✓ Un agente instanciado desde /api/characters.
+✓ Profesión con acento preservada.
+✓ world_sync.gd cargado.
+✓ WorldSync resuelve el endpoint por plataforma.
+✓ WorldSync expone request_full_sync().
+✓ WorldSync expone estado de conexión.
+✓ WorldSync emite sync_status_changed.
+✓ Endpoint Android configurado (http://192.168.0.61:8000).
+✓ Endpoint Desktop configurado (http://127.0.0.1:8000).
+=== TODAS LAS PRUEBAS DEL CLIENTE GODOT 4 APROBADAS SATISFACTORIAMENTE ===

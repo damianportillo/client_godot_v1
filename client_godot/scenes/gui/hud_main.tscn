@@ -1,0 +1,481 @@
+[gd_scene load_steps=7 format=3 uid="uid://hudmain01"]
+
+[ext_resource type="Script" path="res://scripts/gui/hud_main.gd" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_top"]
+bg_color = Color(0.08, 0.1, 0.14, 0.88)
+border_width_bottom = 1
+border_color = Color(0.3, 0.4, 0.55, 0.6)
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.15, 0.18, 0.24, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.5, 0.65, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.07, 0.09, 0.13, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.72, 0.45, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thought"]
+bg_color = Color(0.12, 0.15, 0.20, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.45, 0.55, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.2, 0.25, 0.35, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.7, 0.85, 0.7)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+
+[node name="HUDMain" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_top")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ClockContainer" type="HBoxContainer" parent="TopBar/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ClockIcon" type="Label" parent="TopBar/HBox/ClockContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "☀️"
+
+[node name="TimeLabel" type="Label" parent="TopBar/HBox/ClockContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 9
+text = "Buenos Aires: --:--:--"
+
+[node name="MetricsContainer" type="HBoxContainer" parent="TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+theme_override_constants/separation = 6
+
+[node name="PopPill" type="PanelContainer" parent="TopBar/HBox/MetricsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="PopLabel" type="Label" parent="TopBar/HBox/MetricsContainer/PopPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 8
+text = "👥 6/6 Vivos"
+
+[node name="EcoPill" type="PanelContainer" parent="TopBar/HBox/MetricsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="EcoLabel" type="Label" parent="TopBar/HBox/MetricsContainer/EcoPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 8
+text = "💰 $1000"
+
+[node name="LawsPill" type="PanelContainer" parent="TopBar/HBox/MetricsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="LawsLabel" type="Label" parent="TopBar/HBox/MetricsContainer/LawsPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "📜 5 Leyes"
+
+[node name="AlertPill" type="PanelContainer" parent="TopBar/HBox/MetricsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="AlertLabel" type="Label" parent="TopBar/HBox/MetricsContainer/AlertPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.95, 0.7, 1)
+theme_override_font_sizes/font_size = 8
+text = "🕊️ Calma"
+
+[node name="RightContainer" type="HBoxContainer" parent="TopBar/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="StatusLabel" type="Label" parent="TopBar/HBox/RightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.95, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "🟢 En línea"
+
+[node name="BtnMetrics" type="Button" parent="TopBar/HBox/RightContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "📊 Métricas"
+
+[node name="BottomHint" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.65)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 7
+text = "Toca un habitante o edificio para inspeccionar • Arrastra para mover cámara • Pellizco para zoom"
+horizontal_alignment = 1
+
+[node name="CharacterInspectorModal" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -105.0
+offset_right = 140.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="CharacterInspectorModal"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HeaderHBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="NameTitle" type="Label" parent="CharacterInspectorModal/VBox/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 10
+text = "Mateo Rossi"
+
+[node name="RoleBadge" type="Label" parent="CharacterInspectorModal/VBox/HeaderHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 8
+text = "Proveedor de alimentos • 38 años"
+
+[node name="BtnCloseChar" type="Button" parent="CharacterInspectorModal/VBox/HeaderHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = " ✕ "
+
+[node name="HSeparator" type="HSeparator" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="VitalsGrid" type="GridContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 3
+
+[node name="EnergyBarBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox/VitalsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lbl" type="Label" parent="CharacterInspectorModal/VBox/VitalsGrid/EnergyBarBox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "⚡ Energía:"
+
+[node name="EnergyBar" type="ProgressBar" parent="CharacterInspectorModal/VBox/VitalsGrid/EnergyBarBox"]
+custom_minimum_size = Vector2(65, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+value = 100.0
+
+[node name="HealthBarBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox/VitalsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lbl" type="Label" parent="CharacterInspectorModal/VBox/VitalsGrid/HealthBarBox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "❤️ Salud:"
+
+[node name="HealthBar" type="ProgressBar" parent="CharacterInspectorModal/VBox/VitalsGrid/HealthBarBox"]
+custom_minimum_size = Vector2(65, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+value = 100.0
+
+[node name="HungerBarBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox/VitalsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lbl" type="Label" parent="CharacterInspectorModal/VBox/VitalsGrid/HungerBarBox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "🍞 Hambre:"
+
+[node name="HungerBar" type="ProgressBar" parent="CharacterInspectorModal/VBox/VitalsGrid/HungerBarBox"]
+custom_minimum_size = Vector2(65, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+
+[node name="ThirstBarBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox/VitalsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lbl" type="Label" parent="CharacterInspectorModal/VBox/VitalsGrid/ThirstBarBox"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "💧 Sed:"
+
+[node name="ThirstBar" type="ProgressBar" parent="CharacterInspectorModal/VBox/VitalsGrid/ThirstBarBox"]
+custom_minimum_size = Vector2(65, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 6
+
+[node name="EcoLocHBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="CharacterInspectorModal/VBox/EcoLocHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = "💵 Fondos: $150.00"
+
+[node name="LocLabel" type="Label" parent="CharacterInspectorModal/VBox/EcoLocHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "📍 Ubicación: casa_1"
+horizontal_alignment = 2
+
+[node name="ThoughtBox" type="PanelContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_thought")
+
+[node name="ThoughtText" type="Label" parent="CharacterInspectorModal/VBox/ThoughtBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 7
+text = "🧠 Pensamiento: 'Cuidando los cultivos del huerto para abastecer a mis vecinos.'"
+autowrap_mode = 2
+
+[node name="InvBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="InvLabel" type="Label" parent="CharacterInspectorModal/VBox/InvBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 7
+text = "🎒 Inventario: Manzanas: 10, Pan: 5, Semillas: 5"
+
+[node name="FooterHBox" type="HBoxContainer" parent="CharacterInspectorModal/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="BtnFocusCam" type="Button" parent="CharacterInspectorModal/VBox/FooterHBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "🎯 Centrar Cámara"
+
+[node name="LocationInspectorModal" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="LocationInspectorModal"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Header" type="HBoxContainer" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="LocTitle" type="Label" parent="LocationInspectorModal/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Casa 1: Casa del Huerto"
+
+[node name="BtnCloseLoc" type="Button" parent="LocationInspectorModal/VBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = " ✕ "
+
+[node name="HSeparator" type="HSeparator" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+
+[node name="LocResident" type="Label" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "👤 Habitante: Mateo Rossi (Proveedor de alimentos)"
+
+[node name="LocIntegrity" type="Label" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 1, 0.7, 1)
+theme_override_font_sizes/font_size = 7
+text = "🏗️ Integridad Estructural: 100.0%"
+
+[node name="LocStorage" type="Label" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "📦 Inventario almacenado: semillas: 15, caja_madera: 2"
+autowrap_mode = 2
+
+[node name="LocPresent" type="Label" parent="LocationInspectorModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 7
+text = "📍 Presentes en este lugar: Mateo Rossi"
+
+[node name="CommunityMetricsModal" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -95.0
+offset_right = 150.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="CommunityMetricsModal"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Header" type="HBoxContainer" parent="CommunityMetricsModal/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CommunityMetricsModal/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "📊 Métricas y Ordenanzas del Barrio"
+
+[node name="BtnCloseMetrics" type="Button" parent="CommunityMetricsModal/VBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = " ✕ "
+
+[node name="HSeparator" type="HSeparator" parent="CommunityMetricsModal/VBox"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CommunityMetricsModal/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MetricsContent" type="VBoxContainer" parent="CommunityMetricsModal/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="SummaryLabel" type="Label" parent="CommunityMetricsModal/VBox/ScrollContainer/MetricsContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "Población: 6 habitantes vivos • 6 viviendas operativas • Moneda oficial: Peso"
+
+[node name="LawsSectionTitle" type="Label" parent="CommunityMetricsModal/VBox/ScrollContainer/MetricsContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.5, 1)
+theme_override_font_sizes/font_size = 7
+text = "📜 Leyes Comunitarias Vigentes:"
+
+[node name="LawsList" type="Label" parent="CommunityMetricsModal/VBox/ScrollContainer/MetricsContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "• LEY-001-VIDA: Prohibición de agresiones físicas y homicidio (Multa: $100.00)
+• LEY-002-PROPIEDAD: Prohibición de daños a propiedades ajenas (Multa: $50.00)
+• LEY-003-ROBO: Prohibición de robo y hurto de inventario o dinero (Multa: $40.00)
+• LEY-004-AUTORIDAD: Obligación de cumplir órdenes policiales (Multa: $25.00)
+• LEY-005-CIVICA: Obligación cívica de participación en asambleas (Multa: $10.00)"
+autowrap_mode = 2

@@ -1,0 +1,206 @@
+[gd_scene load_steps=12 format=3 uid="uid://mainsceneneighborhood01"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="2_daynight"]
+[ext_resource type="Script" path="res://scripts/terrain_builder.gd" id="3_terrain"]
+[ext_resource type="Script" path="res://scripts/lighting_manager.gd" id="5_light"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_1.png" id="house_tex_1"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_2.png" id="house_tex_2"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_3.png" id="house_tex_3"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_4.png" id="house_tex_4"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_5.png" id="house_tex_5"]
+[ext_resource type="Texture2D" path="res://assets/props/houses/house_6.png" id="house_tex_6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_house"]
+size = Vector2(40, 36)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="DayNightCycle" type="CanvasModulate" parent="."]
+color = Color(1, 1, 0.98, 1)
+script = ExtResource("2_daynight")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 135)
+zoom = Vector2(1.2, 1.2)
+position_smoothing_enabled = true
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Terrain" type="Node2D" parent="World"]
+script = ExtResource("3_terrain")
+
+[node name="GrassBackground" type="ColorRect" parent="World/Terrain"]
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.60, 0.78, 0.36, 1)
+
+[node name="Streets" type="Node2D" parent="World/Terrain"]
+
+[node name="Houses" type="Node2D" parent="World"]
+
+[node name="House1" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(70, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House1"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House1"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_1")
+
+[node name="Label" type="Label" parent="World/Houses/House1"]
+offset_left = -40.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 40.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 1 (Huerto)"
+horizontal_alignment = 1
+
+[node name="House2" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(70, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House2"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House2"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_2")
+
+[node name="Label" type="Label" parent="World/Houses/House2"]
+offset_left = -45.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 45.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 2 (Manantial)"
+horizontal_alignment = 1
+
+[node name="House3" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(390, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House3"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House3"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_3")
+
+[node name="Label" type="Label" parent="World/Houses/House3"]
+offset_left = -45.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 45.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 3 (Médico)"
+horizontal_alignment = 1
+
+[node name="House4" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(170, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House4"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House4"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_4")
+
+[node name="Label" type="Label" parent="World/Houses/House4"]
+offset_left = -50.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 50.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 4 (Taller)"
+horizontal_alignment = 1
+
+[node name="House5" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(390, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House5"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House5"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_5")
+
+[node name="Label" type="Label" parent="World/Houses/House5"]
+offset_left = -45.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 45.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 5 (Policía)"
+horizontal_alignment = 1
+
+[node name="House6" type="StaticBody2D" parent="World/Houses"]
+position = Vector2(310, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Houses/House6"]
+shape = SubResource("RectangleShape2D_house")
+
+[node name="HouseSprite" type="Sprite2D" parent="World/Houses/House6"]
+position = Vector2(0, -4)
+texture = ExtResource("house_tex_6")
+
+[node name="Label" type="Label" parent="World/Houses/House6"]
+offset_left = -50.0
+offset_top = -58.0
+offset_bottom = -44.0
+offset_right = 50.0
+theme_override_font_sizes/font_size = 8
+text = "Casa 6 (Comunal)"
+horizontal_alignment = 1
+
+[node name="Characters" type="Node2D" parent="World"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="Panel" parent="HUD"]
+offset_right = 480.0
+offset_bottom = 22.0
+
+[node name="TimeLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 220.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 10
+text = "Buenos Aires: Sincronizando..."
+
+[node name="EventsLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 2.0
+offset_right = 472.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 10
+text = "Comunidad en calma"
+horizontal_alignment = 2
+
+[node name="ControlsHint" type="Label" parent="HUD"]
+offset_left = 8.0
+offset_top = 252.0
+offset_right = 472.0
+offset_bottom = 268.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 9
+text = "Arrastre para mover cámara • Rueda / Pinch para zoom • Pixel Art 2D"
+
+[node name="StatusLabel" type="Label" parent="HUD"]
+offset_left = 8.0
+offset_top = 234.0
+offset_right = 260.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 9
+text = "Servidor: sincronizando..."
+
+[node name="Lighting" type="Node2D" parent="."]
+script = ExtResource("5_light")
+
+[node name="AmbientEffectsManager" type="Node2D" parent="."]
+script = ExtResource("6_ambient")

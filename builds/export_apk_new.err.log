@@ -1,0 +1,92 @@
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_bold.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:41)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_regular.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:42)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/ui/border_style.png" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:68)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:93)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:126)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main.gd:152)
+ERROR: Failed to load script "res://scripts/gui/hud_main.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_bold.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:41)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_regular.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:42)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/ui/border_style.png" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:68)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:93)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:126)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main_complete.gd:152)
+ERROR: Failed to load script "res://scripts/gui/hud_main_complete.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_bold.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main_new.gd:38)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/fonts/roboto_regular.ttf" does not exist.
+          at: GDScript::reload (res://scripts/gui/hud_main_new.gd:39)
+SCRIPT ERROR: Parse Error: Preloaded path must be a constant string.
+          at: GDScript::reload (res://scripts/gui/hud_main_new.gd:78)
+ERROR: Failed to load script "res://scripts/gui/hud_main_new.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/particles/wind_particle.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects.gd:40)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/fog.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects.gd:63)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/stars.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects.gd:73)
+ERROR: Failed to load script "res://scripts/ambient_effects.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/particles/wind_particle.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager.gd:60)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/fog.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager.gd:83)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/stars.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager.gd:93)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/particles/rain_drop.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager.gd:103)
+ERROR: Failed to load script "res://scripts/ambient_effects_manager.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/particles/wind_particle.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager_complete.gd:60)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/fog.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager_complete.gd:83)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/environment/stars.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager_complete.gd:93)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/particles/rain_drop.png" does not exist.
+          at: GDScript::reload (res://scripts/ambient_effects_manager_complete.gd:103)
+ERROR: Failed to load script "res://scripts/ambient_effects_manager_complete.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2936)
+ERROR: Attempt to open script 'res://scripts/effects/ambient_particles.gd' resulted in error 'File not found'.
+   at: (modules/gdscript/gdscript.cpp:1094)
+ERROR: Failed loading resource: res://scripts/effects/ambient_particles.gd. Make sure resources have been imported by opening the project in the editor at least once.
+   at: (core/io/resource_loader.cpp:283)
+ERROR: Condition "!int_resources.has(id)" is true. Returning: ERR_INVALID_PARAMETER
+   at: _parse_sub_resource (scene/resources/resource_format_text.cpp:119)
+ERROR: Parse Error: Invalid parameter. [Resource file res://scenes/effects/ambient_particles.tscn:11]
+   at: _parse_node_tag (scene/resources/resource_format_text.cpp:289)
+ERROR: Failed loading resource: res://scenes/effects/ambient_particles.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   at: (core/io/resource_loader.cpp:283)
+ERROR: Condition "ps.is_null()" is true. Returning: p_path
+   at: _export_customize (editor/export/editor_export_platform.cpp:794)
+ERROR: Parse Error: Parse error. [Resource file res://scenes/gui/hud_main.tscn:18]
+   at: _parse_node_tag (scene/resources/resource_format_text.cpp:289)
+ERROR: Failed loading resource: res://scenes/gui/hud_main.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   at: (core/io/resource_loader.cpp:283)
+ERROR: Condition "ps.is_null()" is true. Returning: p_path
+   at: _export_customize (editor/export/editor_export_platform.cpp:794)
+ERROR: Parse Error: Parse error. [Resource file res://scenes/main.tscn:161]
+   at: _parse_node_tag (scene/resources/resource_format_text.cpp:289)
+ERROR: Failed loading resource: res://scenes/main.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   at: (core/io/resource_loader.cpp:283)
+ERROR: Condition "ps.is_null()" is true. Returning: p_path
+   at: _export_customize (editor/export/editor_export_platform.cpp:794)
+ERROR: Code Signing: Could not find keystore, unable to export.
+   at: add_message (editor/export/editor_export_platform.h:182)
+ERROR: Project export for preset "Android" failed.
+   at: _fs_changed (editor/editor_node.cpp:1028)

@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1agentnode01"]
+
+[ext_resource type="Script" path="res://scripts/agent_node.gd" id="1_agent"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agent"]
+size = Vector2(10, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_touch"]
+radius = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.12, 0.14, 0.18, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9, 0.85, 0.65, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+
+[node name="AgentNode" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+input_pickable = true
+script = ExtResource("1_agent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_agent")
+
+[node name="SelectionRing" type="Line2D" parent="."]
+visible = false
+position = Vector2(0, 3)
+points = PackedVector2Array(-9, 0, -6, -3, 0, -4, 6, -3, 9, 0, 6, 3, 0, 4, -6, 3, -9, 0)
+width = 1.5
+default_color = Color(0.4, 0.9, 1, 0.85)
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Shadow" type="ColorRect" parent="Visual"]
+offset_left = -6.0
+offset_top = 1.0
+offset_right = 6.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 0.35)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Visual"]
+centered = false
+offset = Vector2(-8, -14)
+
+[node name="TouchArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="TouchShape" type="CollisionShape2D" parent="TouchArea"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_touch")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -22.0
+offset_bottom = -22.0
+
+[node name="NameLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = -9.0
+offset_right = 35.0
+offset_bottom = 3.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 8
+text = "Agente"
+horizontal_alignment = 1
+
+[node name="ActionBubble" type="PanelContainer" parent="UI"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -23.0
+offset_right = 12.0
+offset_bottom = -9.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bubble")
+
+[node name="ActionIcon" type="Label" parent="UI/ActionBubble"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "🌾"
+horizontal_alignment = 1
+vertical_alignment = 1

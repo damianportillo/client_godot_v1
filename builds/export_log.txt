@@ -1,0 +1,32 @@
+﻿Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 966092234
+EDITOR API HASH: 444927587
+EditorSettings: Load OK!
+EditorTheme: Generating new theme for the config '66886095'.
+EditorTheme: Generating new icons.
+EditorTheme: Generating new fonts.
+EditorTheme: Generating new styles.
+Loaded system CA certificates
+EditorSettings: Save OK!
+Godot_v4.3-stable_win64_console.exe : ERROR: Cannot export project with preset "Android" due to configuration errors:
+At line:1 char:236
++ ... nsole.exe"; & $g --headless --verbose --path client_godot --export-de ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Cannot e...uration errors::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+   at: _fs_changed (editor/editor_node.cpp:1012)
+ERROR: Project export for preset "Android" failed.
+   at: _fs_changed (editor/editor_node.cpp:1028)
+EditorSettings: Save OK!
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Orphan StringName: Node (static: 5, total: 6)
+StringName: 1 unclaimed string names at exit.
