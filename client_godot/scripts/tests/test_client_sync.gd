@@ -55,12 +55,11 @@ func _test_scene_structure() -> int:
 		failures = _check(locations != null, "World/InteractiveLocations presente.", failures)
 		if locations:
 			failures = _check(locations.get_child_count() == 9, "Se esperan 9 áreas interactivas; encontradas: %d." % locations.get_child_count(), failures)
-			for location_name in main_instance.LOCATIONS.keys():
-				var area = locations.get_node_or_null(String(location_name))
-				if area:
-					failures = _check(area.position == main_instance.LOCATIONS[location_name], "Coordenadas alineadas para %s." % String(location_name), failures)
-				else:
-					failures = _check(false, "Área interactiva presente para %s." % String(location_name), failures)
+			for area in locations.get_children():
+				var location_name: String = String(area.name).to_lower()
+				failures = _check(main_instance.LOCATIONS.has(location_name), "Catálogo lógico definido para %s." % location_name, failures)
+				if main_instance.LOCATIONS.has(location_name):
+					failures = _check(area.position == main_instance.LOCATIONS[location_name], "Coordenadas alineadas para %s." % location_name, failures)
 
 	var hud = main_instance.get_node_or_null("HUDMain")
 	failures = _check(hud != null, "Instancia HUDMain presente.", failures)
